@@ -708,7 +708,7 @@ html:not(.gsap) .faq details[open] p { animation: fadeUp .35s var(--ease); }
 .footer { border-top: 1px solid var(--line); padding: 64px 0 32px; background: var(--bg-softer); }
 .footer__inner { display: flex; justify-content: space-between; gap: 48px; flex-wrap: wrap; }
 .footer__logo { display: inline-block; color: var(--ink); }
-.footer__logo svg { width: 160px; height: 22.4px; display: block; }
+.footer__logo svg { width: 156px; height: 25.6px; display: block; }
 .footer__brand p { margin-top: 14px; color: var(--muted); }
 .footer__cols { display: flex; gap: 72px; flex-wrap: wrap; }
 .footer__cols div { display: grid; gap: 10px; align-content: start; }
