@@ -17,16 +17,16 @@
   const THEME_KEY = 'cm-theme';
   const systemDark = matchMedia('(prefers-color-scheme: dark)');
   const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)');
-  const themeBtn = $('.theme-btn');
+  const themeBtns = $$('.theme-btn'); // one in the bar, one in the mobile menu
   const themeMeta = $('meta[name="theme-color"]');
   const savedTheme = () => { try { return localStorage.getItem(THEME_KEY); } catch { return null; } };
   const applyTheme = (theme) => {
     root.setAttribute('data-theme', theme);
     $$('source[data-dark]').forEach((s) => { s.media = theme === 'dark' ? 'all' : 'not all'; });
     themeMeta?.setAttribute('content', theme === 'dark' ? '#0b0b0c' : '#ffffff');
-    themeBtn?.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme');
+    themeBtns.forEach((b) => b.setAttribute('aria-label', theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'));
   };
-  themeBtn?.addEventListener('click', () => {
+  themeBtns.forEach((b) => b.addEventListener('click', () => {
     const next = root.getAttribute('data-theme') === 'dark' ? 'light' : 'dark';
     try { localStorage.setItem(THEME_KEY, next); } catch { /* storage blocked: still switch for this visit */ }
     // Swap every colour at once (no per-element transitions), then crossfade the page where supported
@@ -38,7 +38,7 @@
     };
     if (document.startViewTransition && !reduceMotion.matches) document.startViewTransition(swap);
     else swap();
-  });
+  }));
   // Follow the system setting until the visitor picks a theme themselves
   systemDark.addEventListener('change', (e) => { if (!savedTheme()) applyTheme(e.matches ? 'dark' : 'light'); });
   applyTheme(root.getAttribute('data-theme') === 'dark' ? 'dark' : 'light');
@@ -233,7 +233,7 @@
 
       /* ---------- Hero intro ---------- */
       const title = $('.hero__title');
-      const floats = $$('.float').filter((f) => getComputedStyle(f).display !== 'none');
+      const floats = $$('.float').filter((f) => f.getClientRects().length > 0); // skip floats hidden at this size (all of them on mobile)
       const fds = floats.map((f) => $('.fd', f));
 
       const split = SplitText.create(title, { type: 'words', wordsClass: 'w', mask: 'words' });

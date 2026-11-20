@@ -245,8 +245,8 @@ figure { margin: 0; }
 .brand__logo--mono { width: 49px; height: 26px; }
 
 .nav { display: flex; gap: 4px; }
-.nav a { padding: 8px 14px; border-radius: 999px; color: var(--ink-2); font-size: 15px; font-weight: 500; transition: background-color .2s, color .2s; }
-.nav a:hover { background: var(--bg-soft); color: var(--ink); }
+.nav > a { padding: 8px 14px; border-radius: 999px; color: var(--ink-2); font-size: 15px; font-weight: 500; transition: background-color .2s, color .2s; }
+.nav > a:hover { background: var(--bg-soft); color: var(--ink); }
 
 .header__actions { display: flex; align-items: center; gap: 6px; }
 .theme-btn {
@@ -300,6 +300,8 @@ figure { margin: 0; }
    keeps descenders like g and y, and overhangs on the sides, from being cut off */
 .w-mask, .ln-mask { padding: 0 .06em .22em; margin: 0 -.06em -.22em; }
 .br-lg { display: inline; }
+.br-sm { display: none; }
+.nav__actions { display: none; }
 
 /* Floating pieces around the hero headline */
 .floats { position: absolute; inset: 0; pointer-events: none; z-index: 0; }
@@ -738,16 +740,19 @@ html:not(.gsap) .faq details[open] p { animation: fadeUp .35s var(--ease); }
     transform: translateY(-8px); opacity: 0; pointer-events: none; transition: opacity .2s, transform .25s var(--ease);
   }
   .nav.is-open { transform: none; opacity: 1; pointer-events: auto; }
-  .nav a { padding: 14px 4px; border-radius: 0; font-size: 17px; border-bottom: 1px solid var(--line); }
-  .nav a:hover { background: transparent; }
+  .nav > a { padding: 14px 4px; border-radius: 0; font-size: 17px; border-bottom: 1px solid var(--line); }
+  .nav > a:last-of-type { border-bottom: 0; }
+  .nav > a:hover { background: transparent; }
+  /* The theme switch and CTA move from the bar into the menu */
+  .header__actions > .theme-btn, .header__actions > .btn { display: none; }
+  .nav__actions { display: flex; gap: 10px; margin-top: 8px; }
+  .nav__cta { flex: 1; }
+  .nav__actions .theme-btn { width: 48px; height: 48px; }
   .menu-btn { display: block; }
   .hide-sm { display: none; }
 
-  .float { display: none; }
-  .float[data-m] { display: block; left: var(--mx); top: var(--my); }
-  .float[data-m] .tile { scale: .6; }
-  .hero__inner { padding-top: 112px; }
-  .br-lg { display: none; }
+  .floats { display: none; }
+  .br-sm { display: inline; } /* one sentence per line */
 
   :root { --section-gap: 112px; }
   .section--dark { padding: 88px 0; }
@@ -779,7 +784,7 @@ html:not(.gsap) .faq details[open] p { animation: fadeUp .35s var(--ease); }
   .reel .screen { border-radius: 24px; }
   .waitlist__field { flex-wrap: wrap; border-radius: 26px; padding: 6px; }
   .waitlist__icon { display: none; }
-  .waitlist input { padding: 0 12px; flex-basis: 100%; }
+  .waitlist input { padding: 0 12px; flex-basis: 100%; text-align: center; }
   .waitlist .btn { width: 100%; }
   .cta { padding: 64px 20px; border-radius: var(--radius-lg); }
   .faq summary { font-size: 17px; }
