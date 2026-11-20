@@ -252,6 +252,9 @@
       if (offstage.length) gsap.set(offstage, { autoAlpha: 1 });
 
       gsap.timeline({ defaults: { ease: 'power3.out' } })
+        // Nav bar settles in from just above: logo, links, then actions
+        .fromTo('.header [data-intro]', { autoAlpha: 0, y: -8 },
+          { autoAlpha: 1, y: 0, duration: 0.6, stagger: 0.05, clearProps: 'transform,opacity' }, 0)
         .fromTo('.pill', { autoAlpha: 0, y: -8 }, { autoAlpha: 1, y: 0, duration: 0.7 }, 0.05)
         .set(title, { autoAlpha: 1 }, 0.1)
         .from(split.words, { yPercent: 125, duration: 1, stagger: 0.07, ease: 'power4.out' }, 0.15)
@@ -642,7 +645,7 @@
 
     /* ===== Reduced motion: show everything in its final state ===== */
     mm.add('(prefers-reduced-motion: reduce)', () => {
-      gsap.set('.hero [data-intro], .floats .fd, .reel__col', { autoAlpha: 1 });
+      gsap.set('.hero [data-intro], .header [data-intro], .floats .fd, .reel__col', { autoAlpha: 1 });
     });
   };
 

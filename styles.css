@@ -318,7 +318,7 @@ figure { margin: 0; }
 .hero__title, .title-wrap { pointer-events: none; }
 
 /* Intro elements wait for GSAP (a head script clears .js if GSAP never loads) */
-.js .hero [data-intro], .js .floats .fd, .js .reel__col { visibility: hidden; }
+.js .hero [data-intro], .js .header [data-intro], .js .floats .fd, .js .reel__col { visibility: hidden; }
 .grad {
   background: linear-gradient(90deg, var(--blue) 0%, #22b8ff 55%, var(--cyan) 100%);
   -webkit-background-clip: text; background-clip: text; color: transparent;
@@ -792,5 +792,5 @@ html:not(.gsap) .faq details[open] p { animation: fadeUp .35s var(--ease); }
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation-duration: .001ms !important; animation-delay: 0s !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; transition-delay: 0s !important; scroll-behavior: auto !important; }
   .reel__track { animation: none !important; }
-  .js .hero [data-intro], .js .floats .fd, .js .reel__col { visibility: visible; }
+  .js .hero [data-intro], .js .header [data-intro], .js .floats .fd, .js .reel__col { visibility: visible; }
 }
